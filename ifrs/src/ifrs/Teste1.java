@@ -23,11 +23,11 @@ public class Teste1 {
     
     public static Aluno criaAluno(String nome, String curso, int anoIngresso, boolean ehFormado, long matricula) {
         Aluno jorge = new Aluno();
-        jorge.nome = nome;
-        jorge.curso = curso;
-        jorge.anoIngresso = anoIngresso;
-        jorge.ehFormado = ehFormado;
-        jorge.matricula = matricula;
+        jorge.setNome(nome);
+        jorge.setCurso(curso);
+        jorge.setAnoIngresso(anoIngresso);
+        jorge.setEhFormado(ehFormado);
+        jorge.setMatricula(matricula);
         return jorge;
     }
 }
