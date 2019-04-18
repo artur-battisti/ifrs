@@ -10,9 +10,35 @@ package ifrs;
  * @author 05200250
  */
 public class Curso {
-    String nome;
-    Disciplina disciplinas[];
-    String ppc;
+    private String nome;
+    private Disciplina disciplinas[];
+    private String ppc;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Disciplina[] getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(Disciplina[] disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public String getPpc() {
+        return ppc;
+    }
+
+    public void setPpc(String ppc) {
+        this.ppc = ppc;
+    }
+    
+    
     
     boolean novaDisciplina(Disciplina disciplina){
         for (int i = 0; i < disciplinas.length; i++) {

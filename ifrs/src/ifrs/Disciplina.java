@@ -11,12 +11,54 @@ package ifrs;
  */
 public class Disciplina {
 
-    Aluno alunos[];
-    Professor professor;
-    String Nome;
-    int ano;
-    float notas[];
+    private Aluno alunos[];
+    private Professor professor;
+    private String Nome;
+    private int ano;
+    private float notas[];
 
+    public Aluno[] getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(Aluno[] alunos) {
+        this.alunos = alunos;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    public String getNome() {
+        return Nome;
+    }
+
+    public void setNome(String Nome) {
+        this.Nome = Nome;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public float[] getNotas() {
+        return notas;
+    }
+
+    public void setNotas(float[] notas) {
+        this.notas = notas;
+    }
+
+    
+    
     boolean registrarNota(float nota, Aluno aluno) {
         for (int i = 0; i < alunos.length; i++) {
             if (alunos[i] != null && alunos[i].equals(aluno)) {

@@ -11,6 +11,7 @@ package ifrs;
  */
 public class SetorEnsino {
 
+    private Aluno[] alunos = new Aluno[1000];
     private Curso cursos[];
     private Professor professores[];
     private String diretor;
@@ -80,5 +81,46 @@ public class SetorEnsino {
     public SetorEnsino(String diretor, String coordenador) {
         this.diretor = diretor;
         this.coordenador = coordenador;
+    }
+
+    public void verCursos() {
+        if (cursos != null) {
+            for (Curso curso : cursos) {
+                if (curso != null) {
+                    System.out.println(curso.getNome());
+                    System.out.println(curso.getPpc());
+                }
+            }
+        }
+    }
+
+    public void verNotas(String nome_curso, String disciplina, long matricula) {
+        if (cursos != null) {
+            for (Curso curso : cursos) {
+                if (curso != null && curso.getNome().equals(nome_curso)) {
+                    Disciplina[] disciplinas = curso.getDisciplinas();
+
+                    if (disciplinas != null) {
+                        for (Disciplina d : disciplinas) {
+                            if (d != null && d.getNome().equals(disciplina)) {                                
+                                Aluno[] lista_alunos = d.getAlunos();
+
+                                if (lista_alunos != null) {
+                                    for (int j = 0; j < lista_alunos.length; j++) {
+                                        Aluno aluno = lista_alunos[j];
+
+                                        if (aluno != null && aluno.getMatricula() == matricula) {
+                                            if (d.getNotas() != null) {
+                                                System.out.println(d.getNotas()[j]);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
