@@ -123,4 +123,74 @@ public class SetorEnsino {
             }
         }
     }
+
+    
+    public void darNotas(String nome_disciplina, String nome_aluno, float nota) {
+        if (cursos != null){
+            for (Curso curso : cursos){
+                Disciplina[] disciplinas = curso.getDisciplinas();
+
+                    if (disciplinas != null) {
+                        for (Disciplina d : disciplinas) {
+                            if (d != null && d.getNome().equals(nome_disciplina)) {                                
+                                Aluno[] lista_alunos = d.getAlunos();
+
+                                if (lista_alunos != null) {
+                                    for (int j = 0; j < lista_alunos.length; j++) {
+                                        Aluno aluno = lista_alunos[j];
+
+                                        if (aluno != null && aluno.getNome().equals(nome_aluno)) {
+                                            d.getNotas()[j] = nota;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+                
+        }
+    }
+
+    void adicionar_area(String area, String professor) {
+        for (Professor p : professores) {
+            if (p != null && p.getNome().equals(professor)){
+                p.novaArea(area);
+            }
+        }
+    }
+
+    void remover_area(String area, String professor) {
+        for (Professor p : professores) {
+            if (p != null && p.getNome().equals(professor)){
+                p.removerArea(area);
+            }
+        }
+    }
+
+    
+    
+    void cadastrarAluno(String nome_curso, String disiplina) {
+        if (cursos != null) {
+            for (Curso curso : cursos) {
+                if (curso != null && curso.getNome().equals(nome_curso)) {
+                    Disciplina[] disciplinas = curso.getDisciplinas();
+                    
+                }
+            }
+        }
+    }
+
+    void cadastrarCurso() {
+        
+    }
+
+    void addDisciplinaAoCurso() {
+        
+    }
+
+    void cadastrarProfessor() {
+        
+    }
+    
 }

@@ -15,14 +15,14 @@ import java.util.Scanner;
  * @author 05200250
  */
 public class Main {
-    
-    static BufferedReader s = new BufferedReader(new InputStreamReader(System.in));
 
-    
-    public static void main(String[] args) throws IOException{       
+    public static BufferedReader s = new BufferedReader(new InputStreamReader(System.in));
+
+    public static void main(String[] args) throws IOException {
         SetorEnsino ensino = new SetorEnsino("Pâmela Perini", "Vitor Valente");
+        Aluno[] alunos = new Aluno[1000];
         int opcao = 4;
-        
+
         do {
             opcao = menu("MENU 1: \n "
                     + "[1] Aluno \n "
@@ -55,74 +55,102 @@ public class Main {
         } while (opcao != 4);
     }
 
-    private static int menu(String opcoes) throws IOException{
+    private static int menu(String opcoes) throws IOException {
         System.out.println(opcoes);
         String texto = s.readLine();
         int opcao = Integer.parseInt(texto);
         return opcao;
     }
 
-    private static void menu_alunos(String opcoes, SetorEnsino ensino) throws IOException{
+    private static void menu_alunos(String opcoes, SetorEnsino ensino) throws IOException {
         int opcao = menu(opcoes);
-        switch (opcao){
-            case 1: {   //VER CURSOS
-                    ensino.verCursos();
-                }            
-            case 2: {   //VER NOTAS
+        switch (opcao) {
+            case 1: {   //VER CURSOS OK
+                ensino.verCursos();
+            }
+            case 2: {   //VER NOTAS OK
                 System.out.println("Qual o nome do curso?");
                 String nome_curso = s.readLine();
                 System.out.println("Qual o nome da disciplina?");
                 String disciplina = s.readLine();
                 System.out.println("Qual a sua matrícula?");
                 long matricula = Long.parseLong(s.readLine());
-                
+
                 ensino.verNotas(nome_curso, disciplina, matricula);
             }
-                
+
         }
     }
 
-    private static void menu_professor(String opcoes, SetorEnsino ensino) throws IOException{
+    private static void menu_professor(String opcoes, SetorEnsino ensino) throws IOException {
         int opcao = menu(opcoes);
-        switch (opcao){
-            case 1:{   //Dar Notas de uma disciplina
-                
+        switch (opcao) {
+            case 1: {   //Dar Notas de uma disciplina OK
+                dar_notas(ensino);
             }
-            
-            case 2:{   //Alterar uma nota
-                
+
+            case 2: {   //Alterar uma nota OK
+                dar_notas(ensino);
             }
-            
-            case 3:{   //Adicionar Área
+
+            case 3: {   //Adicionar Área
+                System.out.println("Qual o nome do professor?");
+                String nomeProfessor = s.readLine();
+                System.out.println("Qual o nome da área?");
+                String area = s.readLine();
                 
+                ensino.adicionar_area(area,nomeProfessor);
             }
-            
-            case 4:{   //Remover Área
+
+            case 4: {   //Remover Área
+                System.out.println("Qual o nome do professor?");
+                String nomeProfessor = s.readLine();
+                System.out.println("Qual o nome da área?");
+                String area = s.readLine();
                 
+                ensino.remover_area(area,nomeProfessor);
             }
         }
 
     }
 
-    private static void menu_ensino(String opcoes, SetorEnsino ensino) throws IOException{
+    private static void menu_ensino(String opcoes, SetorEnsino ensino) throws IOException {
         int opcao = menu(opcoes);
-        switch (opcao){
-            case 1:{   //Cadastrar Aluno
-                
+        switch (opcao) {
+            case 1: {   //Cadastrar Aluno
+                System.out.println("Qual o nome do curso?");
+                String nome_curso = s.readLine();
+                System.out.println("Qual o nome da disciplina?");
+                String disciplina = s.readLine();
+
+                ensino.cadastrarAluno(nome_curso, disciplina);
             }
-            
-            case 2:{   //Cadastrar Curso
+
+            case 2: {   //Cadastrar Curso
                 
+                ensino.cadastrarCurso();
             }
-            
-            case 3:{   //Adicionar Disciplina ao Curso
+
+            case 3: {   //Adicionar Disciplina ao Curso
                 
+                ensino.addDisciplinaAoCurso();
             }
-            
-            case 4:{   //Cadastrar Professor
+
+            case 4: {   //Cadastrar Professor
                 
+                ensino.cadastrarProfessor();
             }
         }
 
+    }
+
+    private static void dar_notas(SetorEnsino ensino) throws IOException {
+        System.out.println("Qual o nome da disciplina?");
+        String nome_disciplina = s.readLine();
+        System.out.println("Qual o nome do aluno?");
+        String nome_aluno = s.readLine();
+        System.out.println("Qual a nota do aluno " + nome_aluno + " para a disciplina " + nome_disciplina + "?");
+        float nota = Float.parseFloat(s.readLine());
+        ensino.darNotas(nome_disciplina, nome_aluno, nota);
     }
 }
