@@ -8,6 +8,7 @@ package ifrs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import static java.lang.Long.parseLong;
 import java.util.Scanner;
 
 /**
@@ -118,17 +119,28 @@ public class Main {
         int opcao = menu(opcoes);
         switch (opcao) {
             case 1: {   //Cadastrar Aluno
+                System.out.println("Qual o nome do aluno?");
+                String nomeAluno = s.readLine();
                 System.out.println("Qual o nome do curso?");
                 String nome_curso = s.readLine();
-                System.out.println("Qual o nome da disciplina?");
-                String disciplina = s.readLine();
+                System.out.println("Qual o número da matrícula?");
+                long nMatricula = parseLong(s.readLine());
+                System.out.println("Qual o ano de ingresso?");
+                int anoIngresso = parseint(s.readLine());
+                
 
-                ensino.cadastrarAluno(nome_curso, disciplina);
+                ensino.cadastrarAluno(nomeAluno, nome_curso, nMatricula, anoIngresso);
             }
 
             case 2: {   //Cadastrar Curso
+                System.out.println("Qual o nome do curso?");
+                String nomeCurso = s.readLine();
+                System.out.println("Qual o número do PPC?");
+                 = s.readLine();
+                System.out.println("Qual o nome do curso?");
+                String a = s.readLine();
                 
-                ensino.cadastrarCurso();
+                ensino.cadastrarCurso(nomeCurso);
             }
 
             case 3: {   //Adicionar Disciplina ao Curso
@@ -152,5 +164,9 @@ public class Main {
         System.out.println("Qual a nota do aluno " + nome_aluno + " para a disciplina " + nome_disciplina + "?");
         float nota = Float.parseFloat(s.readLine());
         ensino.darNotas(nome_disciplina, nome_aluno, nota);
+    }
+
+    private static int parseint(String readLine) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -170,19 +170,45 @@ public class SetorEnsino {
 
     
     
-    void cadastrarAluno(String nome_curso, String disiplina) {
-        if (cursos != null) {
-            for (Curso curso : cursos) {
-                if (curso != null && curso.getNome().equals(nome_curso)) {
-                    Disciplina[] disciplinas = curso.getDisciplinas();
-                    
-                }
+    boolean cadastrarAluno(String nomeAluno, String nome_curso, long nMatricula, int anoIngresso) {
+        for (int i = 0; i < alunos.length; i++) {
+            Aluno a = alunos[i];
+            
+            if (a == null){
+                Aluno x = new Aluno();
+                
+                x.setNome(nomeAluno);
+                x.setCurso(nome_curso);
+                x.setMatricula(nMatricula);
+                x.setAnoIngresso(anoIngresso);
+                x.setEhFormado(false);
+                alunos[i] = x;
+                return true;
             }
         }
+        return false;
+                    
     }
+            
 
-    void cadastrarCurso() {
         
+
+    boolean cadastrarCurso(String nomeCurso, String Ppc, String disciplinas) {
+        for (int i = 0; i < cursos.length; i++) {
+            Curso c = cursos[i];
+            
+            if (c == null){     
+                Curso x = new Curso();
+                
+                x.setNome(nomeCurso);
+                x.setPpc(Ppc);
+                x.setDisciplinas(disciplinas);
+            }
+          
+                
+        }    
+        return false;
+        }
     }
 
     void addDisciplinaAoCurso() {
