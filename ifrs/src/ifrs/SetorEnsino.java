@@ -5,6 +5,8 @@
  */
 package ifrs;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
+
 /**
  *
  * @author 05200250
@@ -190,33 +192,46 @@ public class SetorEnsino {
                     
     }
             
-
-        
-
-    boolean cadastrarCurso(String nomeCurso, String Ppc, String disciplinas) {
+    boolean cadastrarCurso(String nomeCurso, String Ppc, Disciplina[] disciplinas) {
         for (int i = 0; i < cursos.length; i++) {
             Curso c = cursos[i];
             
             if (c == null){     
-                Curso x = new Curso();
+                Curso curso = new Curso();
                 
-                x.setNome(nomeCurso);
-                x.setPpc(Ppc);
-                x.setDisciplinas(disciplinas);
+                curso.setNome(nomeCurso);
+                curso.setPpc(Ppc);    
+                curso.setDisciplinas(disciplinas);
+                return true;
             }
           
                 
         }    
         return false;
         }
+
+    boolean addDisciplinaAoCurso(String nomeCurso, Disciplina disciplina) {
+        for (Curso c : cursos){
+            if (c != null && c.equals(nomeCurso)){
+                c.novaDisciplina(disciplina);
+                
+                return true;
+            }
+        }
+        return false;
     }
 
-    void addDisciplinaAoCurso() {
-        
+    boolean cadastrarProfessor(String nomeProfessor, long siape) {
+        for (int i = 0; i < professores.length; i++) {
+            Professor p = professores[i];
+            
+            if (p == null){
+                Professor professor = new Professor();
+                professor.setNome(nomeProfessor);
+                professor.setSiape(siape);
+                return true;
+            } 
+        }
+        return false;
     }
-
-    void cadastrarProfessor() {
-        
-    }
-    
 }
