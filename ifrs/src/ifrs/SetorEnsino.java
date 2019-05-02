@@ -5,8 +5,6 @@
  */
 package ifrs;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
-
 /**
  *
  * @author 05200250
@@ -18,10 +16,29 @@ public class SetorEnsino {
     private Professor professores[];
     private String diretor;
     private String coordenador;
+    
+    public boolean equals(Object obj){
+        if (obj != null && getClass() == obj.getClass()){
+            final SetorEnsino other = (SetorEnsino)obj;
+            
+            if (this.diretor.equals(other.diretor)){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public Aluno[] getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(Aluno[] alunos) {
+        this.alunos = alunos;
+    }
+    
     public boolean novoProfessor(String nome, long siape) {
         for (int i = 0; i < professores.length; i++) {
-            if (professores[i] != null) {
+            if (professores[i] == null) {
                 professores[i] = new Professor();
                 professores[i].setSiape(siape);
                 professores[i].setNome(nome);
@@ -169,8 +186,6 @@ public class SetorEnsino {
             }
         }
     }
-
-    
     
     boolean cadastrarAluno(String nomeAluno, String nome_curso, long nMatricula, int anoIngresso) {
         for (int i = 0; i < alunos.length; i++) {
@@ -192,7 +207,7 @@ public class SetorEnsino {
                     
     }
             
-    boolean cadastrarCurso(String nomeCurso, String Ppc, Disciplina[] disciplinas) {
+    boolean cadastrarCurso(String nomeCurso, String Ppc) {
         for (int i = 0; i < cursos.length; i++) {
             Curso c = cursos[i];
             
@@ -200,21 +215,17 @@ public class SetorEnsino {
                 Curso curso = new Curso();
                 
                 curso.setNome(nomeCurso);
-                curso.setPpc(Ppc);    
-                curso.setDisciplinas(disciplinas);
+                curso.setPpc(Ppc);
                 return true;
-            }
-          
-                
+            }                
         }    
         return false;
         }
 
-    boolean addDisciplinaAoCurso(String nomeCurso, Disciplina disciplina) {
+    boolean addDisciplinaAoCurso(String nomeCurso, String disciplina) {
         for (Curso c : cursos){
-            if (c != null && c.equals(nomeCurso)){
-                c.novaDisciplina(disciplina);
-                
+            if (c != null && c.getNome().equals(nomeCurso)){
+                c.novaDisciplina(new Disciplina(disciplina));
                 return true;
             }
         }
